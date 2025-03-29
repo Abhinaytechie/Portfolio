@@ -7,12 +7,12 @@ const Projects = () => {
   const projects: Project[] = [
     {
       id: 1,
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce platform built with React, Node.js, and PostgreSQL. Features include user authentication, product management, and payment integration.',
-      technologies: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      imageUrl: 'https://images.unsplash.com/photo-1557821552-17105176677c',
-      githubUrl: 'https://github.com',
-      liveUrl: 'https://example.com'
+      title: "Smart AI Email Assistant",
+      description: "An AI-powered email assistant that helps generate smart replies based on email content. Built with React, Vite, and Spring Boot.",
+      technologies: ["React", "Vite", "Spring Boot", "Axios"],
+      imageUrl: "https://ik.imagekit.io/sv5x3c7qr/Screenshot%202025-03-29%20203616.png?updatedAt=1743260846327",
+      githubUrl: "https://github.com/Abhinaytechie/Smart-Ai-Email-Assistant",
+      liveUrl: "https://smart-email-assistant.netlify.app/"
     },
     {
       id: 2,
