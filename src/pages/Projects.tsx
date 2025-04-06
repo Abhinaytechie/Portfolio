@@ -16,7 +16,7 @@ const Projects = () => {
     {
       id: 2,
       title: 'Smart Research Assistant Chrome Extension',
-      description: 'A Chrome extension that summarizes academic papers and answers user queries using AI. It integrates React with a powerful Spring Boot backend, leveraging OpenAI, LangChain, Redis, and Elasticsearch for intelligent context-aware responses.',
+      description: 'A Chrome extension that summarizes academic papers and answers user queries using AI. It integrates React with a powerful Spring Boot backend, leveraging Gemini Api for intelligent context-aware responses.',
       technologies: ['Javascript', 'Spring Boot', 'Gemini API', 'Chrome Extension'],
       imageUrl: 'https://ik.imagekit.io/sv5x3c7qr/re.webp?updatedAt=1743958808197',
       githubUrl: 'https://github.com/Abhinaytechie/Smart-Research-Assistant',
