@@ -12,12 +12,12 @@ const Skills = () => {
     {
       title: 'Backend',
       icon: <Server size={24} />,
-      skills: ['Node.js', 'Python', 'SQL', 'RESTful APIs', 'GraphQL']
+      skills: ['SprinBoot','Java' ,'Python', 'SQL', 'REST APIs','MongoDB']
     },
     {
       title: 'Tools & Others',
       icon: <Wrench size={24} />,
-      skills: ['Git', 'Docker', 'AWS', 'Intellij', 'Agile']
+      skills: ['Git', 'Docker', 'AWS', 'Intellij']
     }
   ];
 

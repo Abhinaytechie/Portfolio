@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import type { Project } from '../types';
@@ -9,18 +8,19 @@ const Projects = () => {
       id: 1,
       title: "Smart AI Email Assistant",
       description: "An AI-powered email assistant that helps generate smart replies based on email content. Built with React, Vite, and Spring Boot.",
-      technologies: ["React", "Vite", "Spring Boot", "Axios"],
+      technologies: ["React", "Vite", "Spring Boot", "Axios","Gemini Api"],
       imageUrl: "https://ik.imagekit.io/sv5x3c7qr/Screenshot%202025-03-29%20203616.png?updatedAt=1743260846327",
       githubUrl: "https://github.com/Abhinaytechie/Smart-Ai-Email-Assistant",
       liveUrl: "https://smart-email-assistant.netlify.app/"
     },
     {
       id: 2,
-      title: 'Task Management App',
-      description: 'A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.',
-      technologies: ['React', 'Firebase', 'Tailwind CSS', 'TypeScript'],
-      imageUrl: 'https://images.unsplash.com/photo-1557804506-669a67965ba0',
-      githubUrl: 'https://github.com'
+      title: 'Smart Research Assistant Chrome Extension',
+      description: 'A Chrome extension that summarizes academic papers and answers user queries using AI. It integrates React with a powerful Spring Boot backend, leveraging OpenAI, LangChain, Redis, and Elasticsearch for intelligent context-aware responses.',
+      technologies: ['Javascript', 'Spring Boot', 'Gemini API', 'Chrome Extension'],
+      imageUrl: 'https://ik.imagekit.io/sv5x3c7qr/re.webp?updatedAt=1743958808197',
+      githubUrl: 'https://github.com/Abhinaytechie/Smart-Research-Assistant',
+      
     }
   ];
 

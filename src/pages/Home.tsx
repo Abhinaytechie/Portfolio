@@ -39,7 +39,7 @@ const Home = () => {
 
             <div className="flex flex-wrap gap-4 items-center">
               <a
-                href="https://ik.imagekit.io/sv5x3c7qr/My%20Resume.pdf?updatedAt=1742833500517"
+                href="https://ik.imagekit.io/sv5x3c7qr/Abhinay_Resume.pdf?updatedAt=1743960788994"
                 className="flex items-center gap-2 px-6 py-3 bg-purple-600 rounded-full font-medium hover:bg-purple-700 transition-all duration-300"
                 download
               >

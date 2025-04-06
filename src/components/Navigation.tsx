@@ -39,7 +39,7 @@ const Navigation = () => {
             
             <div className="flex items-center space-x-4 ml-4">
               <a
-                href="https://ik.imagekit.io/sv5x3c7qr/My%20Resume.pdf?updatedAt=1742833500517"
+                href="https://ik.imagekit.io/sv5x3c7qr/Abhinay_Resume.pdf?updatedAt=1743960788994"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-300 hover:text-white transition-colors"
