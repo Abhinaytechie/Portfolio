@@ -14,10 +14,10 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        'service_ov34rre', // Replace with EmailJS service ID
-        'template_sxhbgor', // Replace with EmailJS template ID
+        'service_ov34rre', // Replace with your actual service ID
+        'template_sxhbgor', // Replace with your actual template ID
         form.current,
-        'zuwQVx0sjvAiNles5' // Replace with EmailJS public key
+        'zuwQVx0sjvAiNles5' // Replace with your actual public key
       )
       .then(
         (result) => {
@@ -49,12 +49,17 @@ const Contact = () => {
         </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-          <motion.div initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.3 }}>
+          {/* Contact Info */}
+          <motion.div
+            initial={{ x: -20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
             <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
             <div className="space-y-4">
               <div className="flex items-center gap-3 text-gray-300">
                 <Mail size={20} className="text-purple-400" />
-                <span>bhargavasaiabhinay@gmail.com</span>
+                <span>bhargavasaiabhiany.b@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 text-gray-300">
                 <Phone size={20} className="text-purple-400" />
@@ -67,9 +72,16 @@ const Contact = () => {
             </div>
           </motion.div>
 
-          <motion.div initial={{ x: 20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.4 }}>
+          {/* Contact Form */}
+          <motion.div
+            initial={{ x: 20, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            transition={{ delay: 0.4 }}
+          >
             {sent ? (
-              <p className="text-green-400">Message sent successfully!</p>
+              <p className="text-green-400 text-lg font-medium">
+                ✅ Message sent successfully!
+              </p>
             ) : (
               <form ref={form} onSubmit={sendEmail} className="space-y-6">
                 <div>
@@ -79,6 +91,7 @@ const Contact = () => {
                   <input
                     type="text"
                     name="user_name"
+                    id="name"
                     required
                     className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
                   />
@@ -90,6 +103,7 @@ const Contact = () => {
                   <input
                     type="email"
                     name="user_email"
+                    id="email"
                     required
                     className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
                   />
@@ -100,6 +114,7 @@ const Contact = () => {
                   </label>
                   <textarea
                     name="message"
+                    id="message"
                     rows={4}
                     required
                     className="w-full px-4 py-2 bg-gray-800 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-400"
