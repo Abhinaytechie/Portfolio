@@ -1,9 +1,10 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { Download, Github, Linkedin } from 'lucide-react';
+import Typingtext from '../components/TypingText';
 
 const Home = () => {
-  return (
+  return (  
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -19,23 +20,29 @@ const Home = () => {
             animate={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl sm:text-6xl font-bold mb-4">
+            <h1 className="text-5xl sm:text-6xl font-bold mb-4 text-white">
               Hey there!! 👋
             </h1>
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            <h2 className="text-4xl sm:text-5xl font-bold mb-6 text-white">
               I'm Bhargava Sai Abhinay
             </h2>
-            <div className="mb-8">
-              <h3 className="text-4xl sm:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text mb-6">
-                Full Stack Developer & AI Enthusiast
-              </h3>
-              <p className="text-gray-300 text-lg max-w-2xl">
-                I build <span className="text-purple-400 font-semibold">scalable web apps</span>,  
-                craft <span className="text-purple-400 font-semibold">AI-driven solutions</span>,  
-                and solve complex problems with <span className="text-purple-400 font-semibold">Java, Python, and Spring Boot.</span>  
-                Passionate about <span className="text-purple-400 font-semibold">innovation, efficiency, and user experience.</span>  
-              </p>
-            </div>
+            
+            <Typingtext
+            texts={[
+              'Software Engineer',
+              'AI Enthusiast',
+              'Spring Boot + React Pro',
+              'Open Source Contributor',
+              'Problem Solver 💡',
+            ]}
+          />
+
+            <p className="text-gray-300 text-lg max-w-2xl mb-8">
+              I build <span className="text-purple-400 font-semibold">scalable web apps</span>,  
+              craft <span className="text-purple-400 font-semibold">AI-driven solutions</span>,  
+              and solve complex problems with <span className="text-purple-400 font-semibold">Java, Python, and Spring Boot.</span>  
+              Passionate about <span className="text-purple-400 font-semibold">innovation, efficiency, and user experience.</span>  
+            </p>
 
             <div className="flex flex-wrap gap-4 items-center">
               <a
@@ -69,7 +76,7 @@ const Home = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Profile Image with Reduced Size & Smooth Animation */}
+          {/* Right Content */}
           <motion.div
             initial={{ x: 100, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -87,7 +94,6 @@ const Home = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             />
           </motion.div>
-
         </div>
       </div>
     </motion.div>
