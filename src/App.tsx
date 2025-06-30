@@ -6,25 +6,56 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Skills from './pages/Skills';
 import Projects from './pages/Projects';
-import Contact from './pages/Contact';
+// @ts-ignore
+import Contact from './components/Contact';
+// @ts-ignore
+import Navbar from './components/Navbar.jsx';
+// @ts-ignore
+import Hero from './components/Hero.jsx';
+// @ts-ignore
+import ProjectsSection from './components/Projects.jsx';
+// @ts-ignore
+import AboutComponent from './components/About.jsx';
+// @ts-ignore
+import TechStack from './components/TechStack.jsx';
+// @ts-ignore
+import Footer from './components/Footer.jsx';
 
-function App() {
+const heroText = 'Abhinay Portfolio';
+const subtitle = 'Futuristic Developer & Designer';
+
+function TypingEffect({ text }: { text: string }) {
+  const [displayed, setDisplayed] = React.useState('');
+  React.useEffect(() => {
+    let i = 0;
+    const interval = setInterval(() => {
+      setDisplayed(text.slice(0, i + 1));
+      i++;
+      if (i === text.length) clearInterval(interval);
+    }, 80);
+    return () => clearInterval(interval);
+  }, [text]);
   return (
-    <Router>
-      <div className="min-h-screen bg-gray-900 text-white">
-        <Navigation />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </AnimatePresence>
-      </div>
-    </Router>
+    <span className="text-accent font-futuristic text-4xl md:text-6xl tracking-widest">
+      {displayed}
+      <span className="animate-pulse">|</span>
+    </span>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <>
+      
+      <Navbar />
+      <main>
+        <Hero />
+        <AboutComponent />
+        <ProjectsSection />
+        <TechStack />
+        <Contact />
+      </main>
+      <Footer />
+    </>
+  );
+}

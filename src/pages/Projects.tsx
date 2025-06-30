@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { ExternalLink, Github } from 'lucide-react';
 import type { Project } from '../types';
+import { useRef } from 'react';
+import { useMotionValue, useTransform } from 'framer-motion';
 
 const Projects = () => {
   const projects: Project[] = [
@@ -39,6 +41,38 @@ const Projects = () => {
     },
   ];
 
+  // 3D tilt effect helper
+  function TiltCard({ children }: { children: React.ReactNode }) {
+    const ref = useRef<HTMLDivElement>(null);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+    const rotateX = useTransform(y, [0, 1], [8, -8]);
+    const rotateY = useTransform(x, [0, 1], [-8, 8]);
+    return (
+      <motion.div
+        ref={ref}
+        style={{ rotateX, rotateY }}
+        onMouseMove={e => {
+          const rect = ref.current?.getBoundingClientRect();
+          if (!rect) return;
+          const px = (e.clientX - rect.left) / rect.width;
+          const py = (e.clientY - rect.top) / rect.height;
+          x.set(px);
+          y.set(py);
+        }}
+        onMouseLeave={() => {
+          x.set(0.5);
+          y.set(0.5);
+        }}
+        initial={{ rotateX: 0, rotateY: 0 }}
+        animate={{ rotateX: 0, rotateY: 0 }}
+        className="group rounded-2xl overflow-hidden border border-accent/40 bg-white/5 backdrop-blur-lg shadow-[0_0_32px_4px_#a259ff33] hover:shadow-accent/40 transition duration-300"
+      >
+        {children}
+      </motion.div>
+    );
+  }
+
   return (
     <motion.section
       initial={{ opacity: 0 }}
@@ -51,72 +85,83 @@ const Projects = () => {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-4xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500"
+          className="text-4xl font-extrabold text-center mb-16 text-transparent bg-clip-text bg-gradient-to-r from-accent to-pink-500"
         >
           🚀 Featured Projects
         </motion.h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 gap-10"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.2 } },
+          }}
+        >
           {projects.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ y: 60, opacity: 0 }}
-              whileInView={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="group rounded-2xl overflow-hidden border border-purple-500/20 bg-white/5 backdrop-blur-lg hover:shadow-2xl transition duration-300"
+              variants={{
+                hidden: { y: 60, opacity: 0, scale: 0.95 },
+                visible: { y: 0, opacity: 1, scale: 1, transition: { duration: 0.6 } },
+              }}
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={project.imageUrl}
-                  alt={project.title}
-                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-
-              <div className="p-6">
-                <h2 className="text-2xl font-semibold text-purple-300 mb-3">
-                  {project.title}
-                </h2>
-                <p className="text-sm text-gray-300 mb-4 leading-relaxed">{project.description}</p>
-
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {project.technologies.map((tech) => (
-                    <span
-                      key={tech}
-                      className="bg-purple-800/30 text-purple-200 text-xs font-medium px-3 py-1 rounded-full"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition"
+              <TiltCard>
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.imageUrl}
+                    alt={project.title}
+                    className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  {/* Hover Overlay */}
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    whileHover={{ opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="absolute inset-0 bg-accent/80 bg-blur flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition"
                   >
-                    <Github size={18} />
-                    Code
-                  </a>
-                  {project.liveUrl && (
-                    <a
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-sm text-gray-300 hover:text-white transition"
-                    >
-                      <ExternalLink size={18} />
-                      Live Demo
-                    </a>
-                  )}
+                    <div className="flex gap-4 mb-2">
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <motion.div whileHover={{ scale: 1.2 }} className="p-2 rounded-full bg-white/10 text-white hover:bg-accent">
+                            <Github size={24} />
+                          </motion.div>
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <motion.div whileHover={{ scale: 1.2 }} className="p-2 rounded-full bg-white/10 text-white hover:bg-accent">
+                            <ExternalLink size={24} />
+                          </motion.div>
+                        </a>
+                      )}
+                    </div>
+                    <div className="text-white text-lg font-bold text-center drop-shadow-glow">
+                      {project.title}
+                    </div>
+                  </motion.div>
                 </div>
-              </div>
+                <div className="p-6">
+                  <h2 className="text-2xl font-semibold text-accent mb-3">
+                    {project.title}
+                  </h2>
+                  <p className="text-sm text-gray-300 mb-4 leading-relaxed">{project.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-accent/20 text-accent text-xs font-medium px-3 py-1 rounded-full"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </TiltCard>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </motion.section>
   );

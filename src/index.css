@@ -2,34 +2,100 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ───────────────────────────
+   Global base styles
+   ─────────────────────────── */
 @layer base {
   body {
-    @apply bg-gray-900 text-white;
+    @apply bg-bg text-text font-sans transition-colors duration-300;
   }
 }
 
-.gradient-text {
-  @apply text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-600;
-}
-
 /* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
-/* Custom scrollbar */
+/* ───────────────────────────
+   Scrollbar (WebKit)
+   ─────────────────────────── */
 ::-webkit-scrollbar {
   width: 8px;
+  background: var(--color-bg);
 }
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-800;
-}
-
+::-webkit-scrollbar-track { @apply bg-gray-800; }
 ::-webkit-scrollbar-thumb {
-  @apply bg-purple-600 rounded-full;
+  background: var(--color-border);
+  border-radius: 8px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-primary); }
+
+/* ───────────────────────────
+   Brand colour palette
+   ─────────────────────────── */
+:root {
+  --color-primary: #FF7C00;                                         /* vivid orange */
+  --color-primary-light: #FFA54D;                                   /* lighter tint for glitches */
+  --color-primary-dark: #CC6300;                                    /* darker tint for glitches */
+  --color-primary-gradient: linear-gradient(to right, #FFA500, #FF7C00);
+  --color-bg: #0D0D0D;                                              /* rich near‑black */
+  --color-text: #FFFFFF;                                            /* main foreground */
+  --color-muted: #9CA3AF;                                           /* subtle copy */
+  --color-border: rgba(255,124,0,0.15);                             /* faint orange border */
 }
 
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-700;
+/* ───────────────────────────
+   Animated gradient utility
+   ─────────────────────────── */
+@keyframes gradient-x {
+  0%, 100% { background-position: 0% 50%; }
+  50%      { background-position: 100% 50%; }
 }
+.animate-gradient-x {
+  background: var(--color-primary-gradient);
+  background-size: 200% 200%;
+  animation: gradient-x 8s ease-in-out infinite;
+}
+
+/* ───────────────────────────
+   Glitch text effects (orange)
+   ─────────────────────────── */
+@keyframes glitch {
+  0%   { text-shadow: 2px 0   var(--color-primary-light), -2px 0   var(--color-primary-dark); }
+  20%  { text-shadow: -2px 0  var(--color-primary-light),  2px 0   var(--color-primary-dark); }
+  40%  { text-shadow: 2px 2px var(--color-primary-light), -2px -2px var(--color-primary-dark); }
+  60%  { text-shadow: -2px 2px var(--color-primary-light), 2px -2px var(--color-primary-dark); }
+  80%  { text-shadow: 2px 0   var(--color-primary-light), -2px 0   var(--color-primary-dark); }
+  100% { text-shadow: none; }
+}
+.animate-glitch   { animation: glitch 0.7s linear infinite; }
+
+@keyframes glitch2 {
+  0%   { opacity: 0.2; left:  2px; }
+  20%  { opacity: 0.4; left: -2px; }
+  40%  { opacity: 0.2; left:  2px; }
+  60%  { opacity: 0.4; left: -2px; }
+  80%  { opacity: 0.2; left:  2px; }
+  100% { opacity: 0.2; left:  0; }
+}
+.animate-glitch2  { animation: glitch2 0.7s linear infinite; }
+
+/* ───────────────────────────
+   Glow & shimmer utilities
+   ─────────────────────────── */
+.drop-shadow-glow {
+  filter: drop-shadow(0 0 8px var(--color-primary))
+          drop-shadow(0 0 16px color-mix(in srgb, var(--color-primary) 40%, transparent));
+}
+
+/* Button hover glow */
+.glow-hover:hover {
+  box-shadow: 0 0 8px  var(--color-primary),
+              0 0 24px var(--color-primary);
+}
+
+/* Card border shimmer */
+@keyframes shimmer {
+  0%   { box-shadow: 0 0 0 0   var(--color-primary); }
+  50%  { box-shadow: 0 0 12px 2px var(--color-primary); }
+  100% { box-shadow: 0 0 0 0   var(--color-primary); }
+}
+.card-shimmer:hover { animation: shimmer 1.2s infinite; }

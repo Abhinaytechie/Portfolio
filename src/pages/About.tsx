@@ -1,5 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+
+function GlitchText({ text }: { text: string }) {
+  const [hovered, setHovered] = useState(false);
+  return (
+    <span
+      className={`relative inline-block font-futuristic text-5xl font-extrabold text-center mb-14 text-transparent bg-clip-text bg-gradient-to-r from-accent to-pink-500 ${hovered ? 'animate-glitch' : ''}`}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+    >
+      {text}
+      <span className="absolute left-0 top-0 w-full h-full opacity-40 blur-sm pointer-events-none select-none animate-glitch2">{text}</span>
+    </span>
+  );
+}
 
 const About = () => {
   return (
@@ -15,9 +29,9 @@ const About = () => {
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="text-5xl font-extrabold text-center mb-14 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500 animate-pulse"
+          className="mb-14"
         >
-          👨‍💻 About Me
+          <GlitchText text="👨‍💻 About Me" />
         </motion.h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
@@ -29,17 +43,18 @@ const About = () => {
             transition={{ delay: 0.3, duration: 0.6 }}
             className="relative group"
           >
-            <div className="rounded-xl overflow-hidden shadow-lg border border-purple-600/40 bg-white/5 backdrop-blur-lg hover:shadow-purple-700/40 transition-shadow">
+            <motion.div
+              animate={{ y: [0, -8, 0] }}
+              transition={{ repeat: Infinity, duration: 3, ease: 'easeInOut' }}
+              className="rounded-xl overflow-hidden shadow-lg border border-accent/40 bg-white/5 backdrop-blur-lg hover:shadow-accent/40 transition-shadow"
+            >
               <motion.img
                 src="https://ik.imagekit.io/sv5x3c7qr/abhi.jpg?updatedAt=1742832419417"
                 alt="Abhinay"
                 className="w-full h-auto rounded-xl transform transition-all duration-500"
-                whileHover={{
-                  scale: 1.05,
-                  rotate: 1.5,
-                }}
+                whileHover={{ scale: 1.07, rotate: 2 }}
               />
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Text Content */}
@@ -80,18 +95,11 @@ const About = () => {
                 ⚡ Quick Facts
               </h2>
               <ul className="space-y-3 text-gray-200 text-base">
-                <motion.li whileHover={{ scale: 1.05 }}>
-                  🎓 B.Tech in Computer Science (Final Year)
-                </motion.li>
-                <motion.li whileHover={{ scale: 1.05 }}>
-                  💼 Software Engineer | AI Project Builder
-                </motion.li>
-                <motion.li whileHover={{ scale: 1.05 }}>
-                  🌍 Based in Hyderabad, India
-                </motion.li>
-                <motion.li whileHover={{ scale: 1.05 }}>
-                  🚀 Contributor @ SSOC | Member of GDG
-                </motion.li>
+                {['🎓 B.Tech in Computer Science (Final Year)','💼 Software Engineer | AI Project Builder','🌍 Based in Hyderabad, India','🚀 Contributor @ SSOC | Member of GDG'].map((fact, i) => (
+                  <motion.li key={fact} whileHover={{ scale: 1.08, color: '#a259ff' }} transition={{ type: 'spring', stiffness: 300 }}>
+                    {fact}
+                  </motion.li>
+                ))}
               </ul>
             </div>
           </motion.div>
