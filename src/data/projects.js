@@ -6,7 +6,7 @@ export const projects = [
     description:
       "AI assistant that crafts personalized replies by analyzing email content. Built with React and Spring Boot, powered by Gemini API for intelligent context handling.",
     coverImage:
-      "https://ik.imagekit.io/sv5x3c7qr/Screenshot%202025-03-29%20203616.png?updatedAt=1743260846327",
+      "https://ik.imagekit.io/sv5x3c7qr/AI-Email-Assistant-2.png?updatedAt=1754388884790",
     hoverVideo: "/assets/email-assistant-preview.mp4",
     caseLink: "https://smart-email-assistant.netlify.app/",
     technologies: [
@@ -40,5 +40,17 @@ export const projects = [
     hoverVideo: "/assets/code-commentor-preview.mp4",
     caseLink: "https://github.com/Abhinaytechie/Code-Commentor",
     technologies: ["Python", "NLP", "Transformers", "Flask", "Gemini API"]
+  },
+  {
+    id: 4,
+    badge: "Project 4.0",
+    title: "Cybersecurity Threat Detection Suite",
+    description:
+      "A modular neural network model built with MLP architecture to classify network traffic and detect malicious patterns. Tailored for cybersecurity tasks using standard datasets.",
+    coverImage:
+      "https://ik.imagekit.io/sv5x3c7qr/Screenshot%202025-08-05%20155340.png?updatedAt=1754389473796", // Replace with your actual image link
+    hoverVideo: "/assets/mlp-network-preview.mp4", // Replace with your actual preview path
+    caseLink: "https://abhinaytechie-network-security-app1-ddnamu.streamlit.app/", // Replace with actual repo/link
+    technologies: ["Python", "TensorFlow", "Pandas", "NumPy", "Matplotlib"]
   }
 ];

@@ -13,7 +13,7 @@ const Projects = () => {
         'AI assistant that crafts personalized replies by analyzing email content. Built with React and Spring Boot, powered by Gemini API for intelligent context handling.',
       technologies: ['React + Vite', 'Spring Boot', 'Axios', 'Gemini API', 'Chrome Extension'],
       imageUrl:
-        'https://ik.imagekit.io/sv5x3c7qr/Screenshot%202025-03-29%20203616.png?updatedAt=1743260846327',
+        'https://ik.imagekit.io/sv5x3c7qr/AI-Email-Assistant-2.png?updatedAt=1754388884790',
       githubUrl: 'https://github.com/Abhinaytechie/Smart-Ai-Email-Assistant',
       liveUrl: 'https://smart-email-assistant.netlify.app/',
     },

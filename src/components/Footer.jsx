@@ -15,7 +15,7 @@ export default function Footer() {
           <a href="https://github.com/Abhinaytechie" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-pink-500 text-xl transition-colors">
             <Github />
           </a>
-          <a href="https://linkedin.com/in/abhinaytechie" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-pink-500 text-xl transition-colors">
+          <a href="https://www.linkedin.com/in/abhinaybondalapati/" target="_blank" rel="noopener noreferrer" className="text-accent hover:text-pink-500 text-xl transition-colors">
             <Linkedin />
           </a>
         </div>
